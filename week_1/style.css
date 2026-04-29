@@ -1,0 +1,158 @@
+/* 기본 배경 및 폰트 설정 */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f3f6f9; /* 부드러운 밝은 회색 배경 */
+    margin: 0;
+    font-family: 'Pretendard', -apple-system, sans-serif;
+    color: #333;
+}
+
+/* 프로필 카드 전체 컨테이너 */
+.profile-card {
+    width: 380px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08); /* 은은한 그림자 */
+    overflow: hidden;
+}
+
+/* 1. 프로필 이미지 영역 */
+.profile-header {
+    background: linear-gradient(135deg, #f6f7f8 0%, #f7f7f7 100%); /* 상단 배경 포인트 컬러 */
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* 이미지를 영역 하단에 걸치도록 정렬 */
+    padding-bottom: 20px;
+    position: relative;
+    margin-bottom: 50px; /* 이미지가 아래로 튀어나올 공간 확보 */
+}
+
+.profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; /* 이미지를 동그랗게 */
+    border: 4px solid #ffffff; /* 흰색 테두리 */
+    background-color: #ffffff;
+    position: absolute;
+    bottom: -50px; /* 영역 아래로 반쯤 튀어나오게 설정 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 2. 자기소개 요약 영역 */
+.profile-summary {
+    text-align: center;
+    padding: 0 24px;
+}
+
+
+/* 트렌디한 반투명 형광펜 효과 */
+.highlight {
+    /* to top: 아래에서 위로 색을 칠함 */
+    /* #ffe566: 형광 노란색 (원하는 색상 코드로 변경 가능) */
+    /* 50%: 글자의 절반 높이까지만 색을 칠하고, 나머지는 투명하게(transparent) 둠 */
+    background: linear-gradient(to top, #ffe566 50%, transparent 50%);
+    
+    /* 형광펜 칠한 부분을 살짝 진하게 만들고 싶다면 추가 */
+    font-weight: 600; 
+    
+    /* 글씨 주변에 칠해지는 영역을 살짝 넓혀서 더 자연스럽게 만듦 */
+    padding: 0 4px; 
+}
+
+.profile-name {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    
+}
+
+/* 진한 글씨 + 형광펜을 동시에 적용하는 클래스 */
+.point-text {
+    /* 1. 진한 글씨 */
+    font-weight: 800; 
+    
+    /* 2. 노란색 반투명 형광펜 (아래 절반만 칠해짐) */
+    background-color: #ffe566; /* 형광펜 색상 */
+    background-image: linear-gradient(to top, #ffe566 50%, transparent 50%); /* 반투명 효과 */
+
+    /* 글씨 양옆 여백 (더 자연스럽게 보임) */
+    padding: 0 4px; 
+
+    border-radius: 4px;
+}
+
+
+.profile-role {
+    margin: 5px 0 15px;
+    font-size: 0.95rem;
+    color: #4facfe; /* 전공/직업 강조색 */
+    font-weight: 600;
+}
+
+.profile-headline {
+    font-size: 1rem;
+    color: #666;
+    font-style: italic;
+    line-height: 1.5;
+    margin: 0 0 20px;
+}
+
+/* 구분선 */
+.divider {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 0 24px;
+}
+
+/* 3. 상세 자기소개 영역 */
+.profile-details {
+    padding: 24px;
+}
+
+.profile-details h3 {
+    margin: 0 0 12px;
+    font-size: 1.1rem;
+    color: #1a1a1a;
+    display: flex;
+    align-items: center;
+}
+
+.profile-details ul {
+    margin: 0 0 20px;
+    padding-left: 20px;
+    color: #030000;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.profile-details li {
+    margin-bottom: 8px;
+}
+
+.profile-details p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #080000;
+    line-height: 1.6;
+    background-color: #f9fafc;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+/* 1. 먼저 .profile-card에 transition이 적용되어 있는지 확인합니다 */
+.profile-card {
+    /* ... 다른 속성들 유지 ... */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+/* 2. 기존에 있던 .profile-card:hover 코드가 있다면 지우고, 아래 코드를 넣습니다. */
+/* 해석: .profile-summary에 hover된 상태를 '가지고 있는(:has)' 카드를 움직여라 */
+.profile-card:has(.profile-summary:hover) {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 32px rgba(0, 0, 0, 0.15);
+}

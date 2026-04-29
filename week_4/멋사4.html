@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아기 사자 디렉토리 - 4주차 최종 과제</title>
+    <link rel="stylesheet" href="멋사 과제 4.css">
+    <script src="멋사 과제 4.js" defer></script>
+</head>
+<body>
+
+    <main class="container">
+        
+        <section class="async-panel">
+            <div class="status-indicator">
+                상태: <span id="async-status" class="status-text ready">준비 완료</span>
+                <button id="retry-btn" class="btn danger-btn hidden">재시도</button>
+            </div>
+            <div class="async-buttons">
+                <button id="add-random-1-btn" class="btn outline-btn">랜덤 1명 추가</button>
+                <button id="add-random-5-btn" class="btn outline-btn">랜덤 5명 추가</button>
+                <button id="refresh-all-btn" class="btn primary-btn">전체 새로고침</button>
+            </div>
+        </section>
+
+        <section class="control-panel">
+            <div class="panel-left">
+                <button id="toggle-form-btn" class="btn outline-btn">아기 사자 추가</button>
+                <button id="delete-last-btn" class="btn outline-btn">마지막 아기 사자 삭제</button>
+            </div>
+            <div class="panel-right">
+                <span id="total-count" class="total-count">총 0명</span>
+            </div>
+        </section>
+
+        <section class="view-options-panel">
+            <div class="input-group search-group">
+                <label for="search-name" class="visually-hidden">이름 검색</label>
+                <input type="text" id="search-name" placeholder="이름으로 검색하세요 (실시간)">
+            </div>
+            <div class="filter-sort-group">
+                <select id="filter-role">
+                    <option value="All">파트: 전체</option>
+                    <option value="Frontend">Frontend</option>
+                    <option value="Backend">Backend</option>
+                    <option value="Design">Design</option>
+                </select>
+                <select id="sort-type">
+                    <option value="newest">최신추가순</option>
+                    <option value="name">이름순 (가나다)</option>
+                </select>
+            </div>
+        </section>
+
+        <section id="form-section" class="form-section hidden">
+            <div class="form-header-flex">
+                <h2 class="form-title">새로운 아기 사자 등록</h2>
+                <button type="button" id="fill-random-btn" class="btn secondary-btn">🎲 랜덤 값 채우기</button>
+            </div>
+            <form id="add-form">
+                <section class="form-grid">
+                    <section class="input-group">
+                        <label for="input-name">이름</label>
+                        <input type="text" id="input-name" placeholder="예: 홍아기사자">
+                        <span class="error-msg" id="error-name">이름을 입력해주세요.</span>
+                    </section>
+
+                    <section class="input-group">
+                        <label for="input-role">파트</label>
+                        <select id="input-role">
+                            <option value="">파트를 선택하세요</option>
+                            <option value="Frontend">Frontend</option>
+                            <option value="Backend">Backend</option>
+                            <option value="Design">Design</option>
+                        </select>
+                        <span class="error-msg" id="error-role">파트를 선택해주세요.</span>
+                    </section>
+
+                    <section class="input-group full-width">
+                        <label for="input-tech">관심 기술 (쉼표로 구분)</label>
+                        <input type="text" id="input-tech" placeholder="예: JavaScript, React, HTML/CSS">
+                        <span class="error-msg" id="error-tech">관심 기술을 입력해주세요.</span>
+                    </section>
+
+                    <section class="input-group full-width">
+                        <label for="input-short">한 줄 소개 (요약 카드)</label>
+                        <input type="text" id="input-short" placeholder="예: 3주차 DOM 조작 연습 중!">
+                        <span class="error-msg" id="error-short">한 줄 소개를 입력해주세요.</span>
+                    </section>
+
+                    <section class="input-group full-width">
+                        <label for="input-bio">자기소개 (상세 카드)</label>
+                        <textarea id="input-bio" rows="3" placeholder="예: HTML/CSS로 구조를 만들고, JS로 데이터를 바꾸는 경험을 하고 있습니다."></textarea>
+                        <span class="error-msg" id="error-bio">자기소개를 입력해주세요.</span>
+                    </section>
+
+                    <section class="input-group">
+                        <label for="input-email">Email</label>
+                        <input type="email" id="input-email" placeholder="예: lion@example.com">
+                        <span class="error-msg" id="error-email">올바른 이메일 형식을 입력해주세요.</span>
+                    </section>
+
+                    <section class="input-group">
+                        <label for="input-phone">Phone</label>
+                        <input type="tel" id="input-phone" placeholder="예: 010-1234-5678">
+                        <span class="error-msg" id="error-phone">전화번호를 입력해주세요.</span>
+                    </section>
+
+                    <section class="input-group full-width">
+                        <label for="input-web">Website</label>
+                        <input type="url" id="input-web" placeholder="예: https://example.com">
+                        <span class="error-msg" id="error-web">올바른 URL(http:// 또는 https://)을 입력해주세요.</span>
+                    </section>
+
+                    <section class="input-group full-width">
+                        <label for="input-word">한 마디</label>
+                        <input type="text" id="input-word" placeholder="예: 데이터 바꾸면 화면도 바뀐다!">
+                        <span class="error-msg" id="error-word">한 마디를 입력해주세요.</span>
+                    </section>
+                </section>
+
+                <section class="form-actions">
+                    <button type="submit" class="btn submit-btn">추가하기</button>
+                    <button type="button" id="cancel-form-btn" class="btn secondary-btn">취소</button>
+                </section>
+            </form>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">아기 사자 요약 목록</h2>
+            <div id="empty-state-summary" class="empty-state hidden">표시할 아기 사자가 없습니다. (필터/검색 조건을 확인해 주세요)</div>
+            
+            <section id="summary-grid" class="summary-grid">
+                <article class="summary-card my-card">
+                    <figure class="card-image-box">
+                        <img src="https://picsum.photos/seed/lion1/400/300" alt="프로필" class="card-image">
+                        <span class="badge tech-badge">React</span>
+                    </figure>
+                    <section class="card-text-box">
+                        <h3 class="card-name">김아기사자</h3>
+                        <p class="card-role role-front">Frontend</p>
+                        <p class="card-short">구조적인 UI를 고민하는 프론트엔드 개발자입니다.</p>
+                        <p class="hidden-data" style="display:none;" data-ismycard="true" data-techs="React, HTML/CSS, JavaScript" data-bio="기본기를 탄탄히 다지는 개발자가 되고 싶습니다." data-email="lionkim@example.com" data-phone="010-1234-5678" data-web="https://example.com" data-word="기본기를 탄탄히 다지는 개발자가 되고 싶습니다."></p>
+                    </section>
+                </article>
+
+                <article class="summary-card">
+                    <figure class="card-image-box"><img src="https://picsum.photos/seed/lion2/400/300" alt="프로필" class="card-image"><span class="badge tech-badge">Spring</span></figure>
+                    <section class="card-text-box">
+                        <h3 class="card-name">박아기사자</h3><p class="card-role role-back">Backend</p><p class="card-short">안정적인 서버 구조에 관심이 많습니다.</p>
+                        <p class="hidden-data" style="display:none;" data-ismycard="false" data-techs="Spring, Java, MySQL" data-bio="안정적인 서비스를 만드는 개발자가 되고 싶습니다." data-email="park@example.com" data-phone="010-2345-6789" data-web="https://backend.dev" data-word="안정적인 서비스를 만드는 개발자가 되고 싶습니다."></p>
+                    </section>
+                </article>
+            </section>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">상세 자기소개 정보</h2>
+            <div id="empty-state-detail" class="empty-state hidden">표시할 아기 사자가 없습니다.</div>
+            
+            <section id="detail-list" class="detail-list">
+                </section>
+        </section>
+
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아기 사자 디렉토리 - 3주차 과제 (9명 완성본)</title>
+    <link rel="stylesheet" href="멋사3.css">
+    <script src="멋사3.js" defer></script>
+</head>
+<body>
+
+    <main class="container">
+        
+        <section class="control-panel">
+    <section class="panel-left">
+        <button id="toggle-form-btn" class="btn outline-btn">아기 사자 추가</button>
+        <button id="delete-last-btn" class="btn outline-btn">마지막 아기 사자 삭제</button>
+    </section>
+
+    <section class="panel-right">
+        <span id="total-count" class="total-count">총 0명</span>
+        
+        <select id="filter-role" class="filter-select">
+            <option value="All">전체</option>
+            <option value="Frontend">Frontend</option>
+            <option value="Backend">Backend</option>
+            <option value="Design">Design</option>
+        </select>
+    </section>
+</section>
+
+        <section id="form-section" class="form-section hidden">
+            <form id="add-form">
+                <section class="form-grid">
+                    <section class="input-group">
+                        <label for="input-name">이름</label>
+                        <input type="text" id="input-name" placeholder="예: 홍아기사자">
+                        <span class="error-msg" id="error-name">이름을 입력해주세요.</span>
+                    </section>
+
+                    <section class="input-group">
+                        <label for="input-role">파트</label>
+                        <select id="input-role">
+                            <option value="Frontend">Frontend</option>
+                            <option value="Backend">Backend</option>
+                            <option value="Design">Design</option>
+                        </select>
+                        <span class="error-msg" id="error-role">파트를 선택해주세요.</span>
+                    </section>
+
+                    <section class="input-group full-width">
+                        <label for="input-tech">관심 기술 (쉼표로 구분)</label>
+                        <input type="text" id="input-tech" placeholder="예: JavaScript, React, HTML/CSS">
+                        <span class="error-msg" id="error-tech">관심 기술을 입력해주세요.</span>
+                    </section>
+
+                    <section class="input-group full-width">
+                        <label for="input-short">한 줄 소개 (요약 카드)</label>
+                        <input type="text" id="input-short" placeholder="예: 3주차 DOM 조작 연습 중!">
+                        <span class="error-msg" id="error-short">한 줄 소개를 입력해주세요.</span>
+                    </section>
+
+                    <section class="input-group full-width">
+                        <label for="input-bio">자기소개 (상세 카드)</label>
+                        <textarea id="input-bio" rows="3" placeholder="예: HTML/CSS로 구조를 만들고, JS로 데이터를 바꾸는 경험을 하고 있습니다."></textarea>
+                        <span class="error-msg" id="error-bio">자기소개를 입력해주세요.</span>
+                    </section>
+
+                    <section class="input-group">
+                        <label for="input-email">Email</label>
+                        <input type="email" id="input-email" placeholder="예: lion@example.com">
+                        <span class="error-msg" id="error-email">올바른 이메일 형식을 입력해주세요.</span>
+                    </section>
+
+                    <section class="input-group">
+                        <label for="input-phone">Phone</label>
+                        <input type="tel" id="input-phone" placeholder="예: 010-1234-5678">
+                        <span class="error-msg" id="error-phone">전화번호를 입력해주세요.</span>
+                    </section>
+
+                    <section class="input-group full-width">
+                        <label for="input-web">Website</label>
+                        <input type="url" id="input-web" placeholder="예: https://example.com">
+                        <span class="error-msg" id="error-web">올바른 URL(http:// 또는 https://)을 입력해주세요.</span>
+                    </section>
+
+                    <section class="input-group full-width">
+                        <label for="input-word">한 마디</label>
+                        <input type="text" id="input-word" placeholder="예: 데이터 바꾸면 화면도 바뀐다!">
+                        <span class="error-msg" id="error-word">한 마디를 입력해주세요.</span>
+                    </section>
+                </section>
+
+                <section class="form-actions">
+                    <button type="submit" class="btn primary-btn">추가하기</button>
+                    <button type="button" id="cancel-form-btn" class="btn secondary-btn">취소</button>
+                </section>
+            </form>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">아기 사자 요약 목록</h2>
+            <section id="summary-grid" class="summary-grid">
+                
+                <article class="summary-card my-card">
+                    <figure class="card-image-box">
+                        <img src="https://picsum.photos/seed/lion1/400/300" alt="프로필" class="card-image">
+                        <span class="badge tech-badge">React</span>
+                    </figure>
+                    <section class="card-text-box">
+                        <h3 class="card-name">김아기사자</h3>
+                        <p class="card-role role-front">Frontend</p>
+                        <p class="card-short">구조적인 UI를 고민하는 프론트엔드 개발자입니다.</p>
+                        <p class="hidden-data" style="display:none;" data-techs="React, HTML/CSS, JavaScript" data-bio="HTML과 CSS를 처음 배우면서 화면이 어떻게 구성되는지에 흥미를 느꼈습니다." data-email="lionkim@example.com" data-phone="010-1234-5678" data-web="https://example.com" data-word="기본기를 탄탄히 다지는 개발자가 되고 싶습니다."></p>
+                    </section>
+                </article>
+
+                <article class="summary-card">
+                    <figure class="card-image-box"><img src="https://picsum.photos/seed/lion2/400/300" alt="프로필" class="card-image"><span class="badge tech-badge">Spring</span></figure>
+                    <section class="card-text-box">
+                        <h3 class="card-name">박아기사자</h3><p class="card-role role-back">Backend</p><p class="card-short">안정적인 서버 구조에 관심이 많습니다.</p>
+                        <p class="hidden-data" style="display:none;" data-techs="Spring, Java, MySQL" data-bio="서버 개발을 배우며 데이터가 오가는 흐름에 관심을 가지게 되었습니다." data-email="park@example.com" data-phone="010-2345-6789" data-web="https://backend.dev" data-word="안정적인 서비스를 만드는 개발자가 되고 싶습니다."></p>
+                    </section>
+                </article>
+
+                <article class="summary-card">
+                    <figure class="card-image-box"><img src="https://picsum.photos/seed/lion3/400/300" alt="프로필" class="card-image"><span class="badge tech-badge">Figma</span></figure>
+                    <section class="card-text-box">
+                        <h3 class="card-name">이아기사자</h3><p class="card-role role-design">Design</p><p class="card-short">사용자 관점에서 디자인을 고민합니다.</p>
+                        <p class="hidden-data" style="display:none;" data-techs="Figma, UI/UX, Prototyping" data-bio="사용자 경험을 깊이 있게 고민하고 직관적인 UI를 설계하는 디자이너입니다." data-email="lee@example.com" data-phone="010-3456-7890" data-web="https://behance.net" data-word="모두가 사용하기 편한 서비스를 디자인하겠습니다."></p>
+                    </section>
+                </article>
+
+                <article class="summary-card">
+                    <figure class="card-image-box"><img src="https://picsum.photos/seed/lion4/400/300" alt="프로필" class="card-image"><span class="badge tech-badge">TypeScript</span></figure>
+                    <section class="card-text-box">
+                        <h3 class="card-name">최아기사자</h3><p class="card-role role-front">Frontend</p><p class="card-short">컴포넌트 단위 설계에 흥미가 있습니다.</p>
+                        <p class="hidden-data" style="display:none;" data-techs="TypeScript, React, Next.js" data-bio="타입 안정성과 재사용 가능한 컴포넌트 설계에 푹 빠져있습니다." data-email="choi@example.com" data-phone="010-4567-8901" data-web="https://github.com" data-word="버그 없는 깔끔한 코드를 작성하겠습니다."></p>
+                    </section>
+                </article>
+
+                <article class="summary-card">
+                    <figure class="card-image-box"><img src="https://picsum.photos/seed/lion5/400/300" alt="프로필" class="card-image"><span class="badge tech-badge">Node.js</span></figure>
+                    <section class="card-text-box">
+                        <h3 class="card-name">정아기사자</h3><p class="card-role role-back">Backend</p><p class="card-short">데이터 흐름을 명확히 하는 개발을 지향합니다.</p>
+                        <p class="hidden-data" style="display:none;" data-techs="Node.js, Express, MongoDB" data-bio="가볍고 빠른 서버와 비동기 처리에 관심이 많은 개발자입니다." data-email="jung@example.com" data-phone="010-5678-9012" data-web="https://github.com" data-word="트래픽을 견디는 아키텍처를 설계하고 싶습니다."></p>
+                    </section>
+                </article>
+
+                <article class="summary-card">
+                    <figure class="card-image-box"><img src="https://picsum.photos/seed/lion6/400/300" alt="프로필" class="card-image"><span class="badge tech-badge">Design System</span></figure>
+                    <section class="card-text-box">
+                        <h3 class="card-name">오아기사자</h3><p class="card-role role-design">Design</p><p class="card-short">디자인 시스템 구축에 관심이 많습니다.</p>
+                        <p class="hidden-data" style="display:none;" data-techs="Design System, Figma, Zeplin" data-bio="규칙을 만들고 일관된 톤앤매너를 유지하는 디자인 시스템에 매료되었습니다." data-email="oh@example.com" data-phone="010-6789-0123" data-web="https://dribbble.com" data-word="소통하기 편한 디자인 가이드를 만들겠습니다."></p>
+                    </section>
+                </article>
+
+                <article class="summary-card">
+                    <figure class="card-image-box"><img src="https://picsum.photos/seed/lion7/400/300" alt="프로필" class="card-image"><span class="badge tech-badge">CSS Grid</span></figure>
+                    <section class="card-text-box">
+                        <h3 class="card-name">강아기사자</h3><p class="card-role role-front">Frontend</p><p class="card-short">레이아웃의 정석을 다루고 싶습니다.</p>
+                        <p class="hidden-data" style="display:none;" data-techs="CSS Grid, SASS, Tailwind" data-bio="화면 구조를 마음대로 다루는 것을 목표로 CSS를 깊이 파고 있습니다." data-email="kang@example.com" data-phone="010-7890-1234" data-web="https://github.com" data-word="완벽한 반응형 웹을 만들겠습니다."></p>
+                    </section>
+                </article>
+
+                <article class="summary-card">
+                    <figure class="card-image-box"><img src="https://picsum.photos/seed/lion8/400/300" alt="프로필" class="card-image"><span class="badge tech-badge">GraphQL</span></figure>
+                    <section class="card-text-box">
+                        <h3 class="card-name">윤아기사자</h3><p class="card-role role-back">Backend</p><p class="card-short">효율적인 API 설계에 관심이 있습니다.</p>
+                        <p class="hidden-data" style="display:none;" data-techs="GraphQL, Apollo, PostgreSQL" data-bio="클라이언트가 원하는 데이터만 쏙쏙 골라 전달하는 기술을 공부합니다." data-email="yoon@example.com" data-phone="010-8901-2345" data-web="https://github.com" data-word="오버페칭 없는 깔끔한 API를 짜겠습니다."></p>
+                    </section>
+                </article>
+
+                <article class="summary-card">
+                    <figure class="card-image-box"><img src="https://picsum.photos/seed/lion9/400/300" alt="프로필" class="card-image"><span class="badge tech-badge">Notion</span></figure>
+                    <section class="card-text-box">
+                        <h3 class="card-name">임아기사자</h3><p class="card-role role-design">Design</p><p class="card-short">팀의 목표를 명확하게 설정하고 돕습니다.</p>
+                        <p class="hidden-data" style="display:none;" data-techs="Notion, UX Writing, Agile" data-bio="사용자의 목소리를 담아 프로덕트의 방향성을 잡는 역할을 합니다." data-email="lim@example.com" data-phone="010-9012-3456" data-web="https://trello.com" data-word="성공적인 서비스 런칭을 이끌겠습니다!"></p>
+                    </section>
+                </article>
+
+            </section>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">상세 자기소개 정보</h2>
+            <section id="detail-list" class="detail-list">
+                
+                <article class="detail-card">
+                    <header class="detail-header"><h3 class="detail-name">김아기사자</h3><p class="detail-role role-front">Frontend</p><p class="detail-club">LION TRACK</p></header>
+                    <section class="detail-body">
+                        <h4 class="detail-section-title">자기소개</h4><p class="detail-text">HTML과 CSS를 처음 배우면서 화면이 어떻게 구성되는지에 흥미를 느꼈습니다.</p>
+                        <h4 class="detail-section-title">연락처</h4><ul class="detail-ul"><li>Email: lionkim@example.com</li><li>Phone: 010-1234-5678</li><li><a href="https://example.com" target="_blank">https://example.com</a></li></ul>
+                        <h4 class="detail-section-title">관심 기술</h4><ul class="detail-ul"><li>React</li><li>HTML/CSS</li><li>JavaScript</li></ul>
+                        <h4 class="detail-section-title">한 마디</h4><p class="detail-text">기본기를 탄탄히 다지는 개발자가 되고 싶습니다.</p>
+                    </section>
+                </article>
+                <article class="detail-card">
+                    <header class="detail-header"><h3 class="detail-name">박아기사자</h3><p class="detail-role role-back">Backend</p><p class="detail-club">LION TRACK</p></header>
+                    <section class="detail-body">
+                        <h4 class="detail-section-title">자기소개</h4><p class="detail-text">서버 개발을 배우며 데이터가 오가는 흐름에 관심을 가지게 되었습니다.</p>
+                        <h4 class="detail-section-title">연락처</h4><ul class="detail-ul"><li>Email: park@example.com</li><li>Phone: 010-2345-6789</li><li><a href="https://backend.dev" target="_blank">https://backend.dev</a></li></ul>
+                        <h4 class="detail-section-title">관심 기술</h4><ul class="detail-ul"><li>Spring</li><li>Java</li><li>MySQL</li></ul>
+                        <h4 class="detail-section-title">한 마디</h4><p class="detail-text">안정적인 서비스를 만드는 개발자가 되고 싶습니다.</p>
+                    </section>
+                </article>
+                <article class="detail-card">
+                    <header class="detail-header"><h3 class="detail-name">이아기사자</h3><p class="detail-role role-design">Design</p><p class="detail-club">LION TRACK</p></header>
+                    <section class="detail-body">
+                        <h4 class="detail-section-title">자기소개</h4><p class="detail-text">사용자 경험을 깊이 있게 고민하고 직관적인 UI를 설계하는 디자이너입니다.</p>
+                        <h4 class="detail-section-title">연락처</h4><ul class="detail-ul"><li>Email: lee@example.com</li><li>Phone: 010-3456-7890</li><li><a href="https://behance.net" target="_blank">https://behance.net</a></li></ul>
+                        <h4 class="detail-section-title">관심 기술</h4><ul class="detail-ul"><li>Figma</li><li>UI/UX</li><li>Prototyping</li></ul>
+                        <h4 class="detail-section-title">한 마디</h4><p class="detail-text">모두가 사용하기 편한 서비스를 디자인하겠습니다.</p>
+                    </section>
+                </article>
+                <article class="detail-card">
+                    <header class="detail-header"><h3 class="detail-name">최아기사자</h3><p class="detail-role role-front">Frontend</p><p class="detail-club">LION TRACK</p></header>
+                    <section class="detail-body">
+                        <h4 class="detail-section-title">자기소개</h4><p class="detail-text">타입 안정성과 재사용 가능한 컴포넌트 설계에 푹 빠져있습니다.</p>
+                        <h4 class="detail-section-title">연락처</h4><ul class="detail-ul"><li>Email: choi@example.com</li><li>Phone: 010-4567-8901</li><li><a href="https://github.com" target="_blank">https://github.com</a></li></ul>
+                        <h4 class="detail-section-title">관심 기술</h4><ul class="detail-ul"><li>TypeScript</li><li>React</li><li>Next.js</li></ul>
+                        <h4 class="detail-section-title">한 마디</h4><p class="detail-text">버그 없는 깔끔한 코드를 작성하겠습니다.</p>
+                    </section>
+                </article>
+                <article class="detail-card">
+                    <header class="detail-header"><h3 class="detail-name">정아기사자</h3><p class="detail-role role-back">Backend</p><p class="detail-club">LION TRACK</p></header>
+                    <section class="detail-body">
+                        <h4 class="detail-section-title">자기소개</h4><p class="detail-text">가볍고 빠른 서버와 비동기 처리에 관심이 많은 개발자입니다.</p>
+                        <h4 class="detail-section-title">연락처</h4><ul class="detail-ul"><li>Email: jung@example.com</li><li>Phone: 010-5678-9012</li><li><a href="https://github.com" target="_blank">https://github.com</a></li></ul>
+                        <h4 class="detail-section-title">관심 기술</h4><ul class="detail-ul"><li>Node.js</li><li>Express</li><li>MongoDB</li></ul>
+                        <h4 class="detail-section-title">한 마디</h4><p class="detail-text">트래픽을 견디는 아키텍처를 설계하고 싶습니다.</p>
+                    </section>
+                </article>
+                <article class="detail-card">
+                    <header class="detail-header"><h3 class="detail-name">오아기사자</h3><p class="detail-role role-design">Design</p><p class="detail-club">LION TRACK</p></header>
+                    <section class="detail-body">
+                        <h4 class="detail-section-title">자기소개</h4><p class="detail-text">규칙을 만들고 일관된 톤앤매너를 유지하는 디자인 시스템에 매료되었습니다.</p>
+                        <h4 class="detail-section-title">연락처</h4><ul class="detail-ul"><li>Email: oh@example.com</li><li>Phone: 010-6789-0123</li><li><a href="https://dribbble.com" target="_blank">https://dribbble.com</a></li></ul>
+                        <h4 class="detail-section-title">관심 기술</h4><ul class="detail-ul"><li>Design System</li><li>Figma</li><li>Zeplin</li></ul>
+                        <h4 class="detail-section-title">한 마디</h4><p class="detail-text">소통하기 편한 디자인 가이드를 만들겠습니다.</p>
+                    </section>
+                </article>
+                <article class="detail-card">
+                    <header class="detail-header"><h3 class="detail-name">강아기사자</h3><p class="detail-role role-front">Frontend</p><p class="detail-club">LION TRACK</p></header>
+                    <section class="detail-body">
+                        <h4 class="detail-section-title">자기소개</h4><p class="detail-text">화면 구조를 마음대로 다루는 것을 목표로 CSS를 깊이 파고 있습니다.</p>
+                        <h4 class="detail-section-title">연락처</h4><ul class="detail-ul"><li>Email: kang@example.com</li><li>Phone: 010-7890-1234</li><li><a href="https://github.com" target="_blank">https://github.com</a></li></ul>
+                        <h4 class="detail-section-title">관심 기술</h4><ul class="detail-ul"><li>CSS Grid</li><li>SASS</li><li>Tailwind</li></ul>
+                        <h4 class="detail-section-title">한 마디</h4><p class="detail-text">완벽한 반응형 웹을 만들겠습니다.</p>
+                    </section>
+                </article>
+                <article class="detail-card">
+                    <header class="detail-header"><h3 class="detail-name">윤아기사자</h3><p class="detail-role role-back">Backend</p><p class="detail-club">LION TRACK</p></header>
+                    <section class="detail-body">
+                        <h4 class="detail-section-title">자기소개</h4><p class="detail-text">클라이언트가 원하는 데이터만 쏙쏙 골라 전달하는 기술을 공부합니다.</p>
+                        <h4 class="detail-section-title">연락처</h4><ul class="detail-ul"><li>Email: yoon@example.com</li><li>Phone: 010-8901-2345</li><li><a href="https://github.com" target="_blank">https://github.com</a></li></ul>
+                        <h4 class="detail-section-title">관심 기술</h4><ul class="detail-ul"><li>GraphQL</li><li>Apollo</li><li>PostgreSQL</li></ul>
+                        <h4 class="detail-section-title">한 마디</h4><p class="detail-text">오버페칭 없는 깔끔한 API를 짜겠습니다.</p>
+                    </section>
+                </article>
+                <article class="detail-card">
+                    <header class="detail-header"><h3 class="detail-name">임아기사자</h3><p class="detail-role role-design">Design</p><p class="detail-club">LION TRACK</p></header>
+                    <section class="detail-body">
+                        <h4 class="detail-section-title">자기소개</h4><p class="detail-text">사용자의 목소리를 담아 프로덕트의 방향성을 잡는 역할을 합니다.</p>
+                        <h4 class="detail-section-title">연락처</h4><ul class="detail-ul"><li>Email: lim@example.com</li><li>Phone: 010-9012-3456</li><li><a href="https://trello.com" target="_blank">https://trello.com</a></li></ul>
+                        <h4 class="detail-section-title">관심 기술</h4><ul class="detail-ul"><li>Notion</li><li>UX Writing</li><li>Agile</li></ul>
+                        <h4 class="detail-section-title">한 마디</h4><p class="detail-text">성공적인 서비스 런칭을 이끌겠습니다!</p>
+                    </section>
+                </article>
+
+            </section>
+        </section>
+
+    </main>
+
+</body>
+</html>
